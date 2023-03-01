@@ -5,17 +5,23 @@ resource "hci_instance" "WorkerVirtualMachine" {
   network_id = var.NetworkId
   template = var.OsTemplate
   compute_offering = var.Size
-  ssh_key_name = var.SshKeyName
+  ssh_key_name = hci_ssh_key.SshKey.id
   root_volume_size_in_gb = var.OsDiskSize
   cpu_count = var.CpuCount
   memory_in_mb = var.Memory
+}
+
+resource "hci_ssh_key" "SshKey" {
+    environment_id = var.environment_id
+    name           = "ssh-key"
+    public_key     = file("public_key.pub")
 }
 
 resource "hci_network_acl" "Acl" {
     environment_id = var.environment_id
     name           = var.AclSsh
     description    = "The ACL for ssh rules"
-    vpc_id         = var.NetworkId
+    vpc_id         = var.VpcId
 }
 
 resource "hci_network_acl_rule" "AllowSshRule" {
