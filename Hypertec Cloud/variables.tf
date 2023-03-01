@@ -39,7 +39,7 @@ variable "Memory" {
 variable "NetworkId" {
   type = string
   description = "The id for the network."
-  default = "bc56c1f1-c02a-4886-9938-6abf64f95796"
+  default = "d5151b83-52ac-4dba-9d9a-28126cb142fe"
   sensitive = true
 }
 
