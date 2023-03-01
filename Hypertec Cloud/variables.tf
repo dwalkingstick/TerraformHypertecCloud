@@ -73,6 +73,13 @@ variable "VirtualMachineName" {
   default = "vm-terraform-dev-hyp-eastus"
 }
 
+variable "VpcId" {
+  type = string
+  description = "The id for the vpc."
+  default = "bc56c1f1-c02a-4886-9938-6abf64f95796"
+  sensitive = true
+}
+
 variable "WorkerNodes" {
   type = string
   description = "The number of worker nodes to create."
